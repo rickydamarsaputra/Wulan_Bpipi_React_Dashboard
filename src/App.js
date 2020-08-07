@@ -1,26 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from "./components/Header";
+import BpipiChart from "./components/BpipiChart";
+
+export default function App() {
+	return (
+		<div className="w-screen h-screen bg-blue-custom py-10 overflow-hidden">
+			<Header />
+			<BpipiChart />
+		</div>
+	);
 }
-
-export default App;
