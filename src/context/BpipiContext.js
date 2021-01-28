@@ -4,7 +4,7 @@ import axios from "axios";
 export const BpipiContext = createContext();
 
 export const BpipiContextProvider = ({ children }) => {
-	const API_URL = "http://datacenter.bpipi.id/review/generate_graphic_json";
+	const API_URL = "https://datacenter.bpipi.id/review/generate_graphic_json";
 	const Cors = "https://cors-anywhere.herokuapp.com/";
 	const [iframe, setIframe] = useState(false);
 	const [iframeUrl, setIframeUrl] = useState("http://datacenter.bpipi.id/");

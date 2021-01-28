@@ -8,8 +8,8 @@ import axios from "axios";
 import Recaptcha from "react-google-recaptcha";
 
 export default function SurveyPresepsiAntiKorupsi() {
-	const { questionsB, servicesB, ratingsB, API_URL, Cors, SITE_KEY } = useContext(BpipiSurveyContext);
-	const [isValid, setIsValid] = useState(true);
+	const { questionsB, servicesB, currentTotalAvgRateB, ratingsB, API_URL, Cors, SITE_KEY } = useContext(BpipiSurveyContext);
+	const [isValid, setIsValid] = useState(false);
 	const [isLoading, setIsloading] = useState(false);
 	const [service, setService] = useState(servicesB[0].ID_layanan);
 	const [serviceTitle, setServiceTitle] = useState("");
@@ -39,6 +39,7 @@ export default function SurveyPresepsiAntiKorupsi() {
 			pendidikan: "-",
 			ID_review_layanan: service,
 			layanan: serviceTitle,
+			current_total_avg_rate: currentTotalAvgRateB,
 			ID_pertanyaan: ratingsB,
 		};
 		!serviceTitle ? setValidService(true) : setValidService(false);
@@ -46,6 +47,7 @@ export default function SurveyPresepsiAntiKorupsi() {
 		!company ? setValidCompany(true) : setValidCompany(false);
 		!address ? setValidAddress(true) : setValidAddress(false);
 		!telephone ? setValidTelephone(true) : setValidTelephone(false);
+
 		if (serviceTitle && email && company && address && telephone && isValid == false) {
 			setIsloading(true);
 			axios.post(Cors + API_URL + "?tipe=form_b", dataTransfer).then((response) => {

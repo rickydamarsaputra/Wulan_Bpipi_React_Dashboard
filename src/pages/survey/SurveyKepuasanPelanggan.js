@@ -8,7 +8,7 @@ import axios from "axios";
 import Recaptcha from "react-google-recaptcha";
 
 export default function SurveyKepuasanPelanggan() {
-	const { questionsA, servicesA, educations, ratingsA, API_URL, Cors, SITE_KEY } = useContext(BpipiSurveyContext);
+	const { questionsA, servicesA, currentTotalAvgRateA, educations, ratingsA, API_URL, Cors, SITE_KEY } = useContext(BpipiSurveyContext);
 	const [isValid, setIsValid] = useState(true);
 	const [isLoading, setIsloading] = useState(false);
 	const [service, setService] = useState(servicesA[0].ID_layanan);
@@ -34,9 +34,10 @@ export default function SurveyKepuasanPelanggan() {
 			telepon: "-",
 			umur: age,
 			jenis_kelamin: gender,
-			pendidikan: education,
+			pendidikan: educations.indexOf(education) + 1,
 			ID_review_layanan: service,
 			layanan: serviceTitle,
+			current_total_avg_rate: currentTotalAvgRateA,
 			ID_pertanyaan: ratingsA,
 		};
 		!serviceTitle ? setValidService(true) : setValidService(false);

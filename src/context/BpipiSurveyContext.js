@@ -9,15 +9,17 @@ export const BpipiSurveyContextProvider = ({ children }) => {
 	const [educations, SetEducations] = useState(["Pilih Pendidikan Terakhir", "SMP Atau Dibawah SMP", "SMA/SMK/Setara", "D1/D2/D3/D4", "S1", "S2 Atau Diatas S2"]);
 	const [questionsA, setQuestionsA] = useState([]);
 	const [questionsB, setQuestionsB] = useState([]);
+	const [currentTotalAvgRateA, setCurrentTotalAvgRateA] = useState(null);
+	const [currentTotalAvgRateB, setCurrentTotalAvgRateB] = useState(null);
 	const [ratingsA, setRatingsA] = useState([]);
 	const [ratingsB, setRatingsB] = useState([]);
-	const [API_URL, setAPI_URL] = useState("http://datacenter.bpipi.id/api/survey/");
+	const [API_URL, setAPI_URL] = useState("https://datacenter.bpipi.id/api/survey/");
 	const [Cors, setCors] = useState("https://cors-anywhere.herokuapp.com/");
 	const [SITE_KEY, setSITE_KEY] = useState("6LdwvdUZAAAAABa_J3sSvSBgCVad273YncgkeLJR");
 
 	useEffect(() => {
 		axios.get(Cors + API_URL + "?tipe=form_a").then((response) => {
-			const { pertanyaan, layanan } = response.data;
+			const { pertanyaan, layanan, current_total_avg_rate } = response.data;
 			SetServicesA(
 				layanan.map((snap) => {
 					const { ID_layanan, layanan } = snap;
@@ -30,9 +32,10 @@ export const BpipiSurveyContextProvider = ({ children }) => {
 					return { pertanyaan, ID_pertanyaan, current_avg_rate };
 				})
 			);
+			setCurrentTotalAvgRateA(current_total_avg_rate);
 		});
 		axios.get(Cors + API_URL + "?tipe=form_b").then((response) => {
-			const { pertanyaan, layanan } = response.data;
+			const { pertanyaan, layanan, current_total_avg_rate } = response.data;
 			SetServicesB(
 				layanan.map((snap) => {
 					const { ID_layanan, layanan } = snap;
@@ -45,8 +48,9 @@ export const BpipiSurveyContextProvider = ({ children }) => {
 					return { pertanyaan, ID_pertanyaan, current_avg_rate };
 				})
 			);
+			setCurrentTotalAvgRateA(current_total_avg_rate);
 		});
 	}, []);
 
-	return <BpipiSurveyContext.Provider value={{ questionsA, questionsB, servicesA, servicesB, educations, API_URL, Cors, SITE_KEY, ratingsA, ratingsB, setRatingsA, setRatingsB }}>{children}</BpipiSurveyContext.Provider>;
+	return <BpipiSurveyContext.Provider value={{ questionsA, questionsB, currentTotalAvgRateA, currentTotalAvgRateB, servicesA, servicesB, educations, API_URL, Cors, SITE_KEY, ratingsA, ratingsB, setRatingsA, setRatingsB }}>{children}</BpipiSurveyContext.Provider>;
 };
