@@ -393,12 +393,6 @@ img {
   margin-bottom: calc(1.25rem * var(--space-y-reverse));
 }
 
-.bg-black{
-  --bg-opacity: 1;
-  background-color: #000;
-  background-color: rgba(0, 0, 0, var(--bg-opacity));
-}
-
 .bg-white{
   --bg-opacity: 1;
   background-color: #fff;
@@ -518,10 +512,6 @@ img {
   height: 100vh;
 }
 
-.h-thin{
-  height: 1px;
-}
-
 .text-xs{
   font-size: 0.75rem;
 }
@@ -540,11 +530,6 @@ img {
 
 .text-4xl{
   font-size: 2.25rem;
-}
-
-.my-2{
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .my-3{
@@ -1033,10 +1018,6 @@ img {
 
   .fhd\:hidden{
     display: none;
-  }
-
-  .fhd\:items-center{
-    align-items: center;
   }
 
   .fhd\:text-xl{

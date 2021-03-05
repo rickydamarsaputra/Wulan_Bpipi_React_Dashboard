@@ -18,38 +18,40 @@ export const BpipiSurveyContextProvider = ({ children }) => {
 	const [SITE_KEY, setSITE_KEY] = useState("6LdwvdUZAAAAABa_J3sSvSBgCVad273YncgkeLJR");
 
 	useEffect(() => {
-		axios.get(Cors + API_URL + "?tipe=form_a").then((response) => {
-			const { pertanyaan, layanan, current_total_avg_rate } = response.data;
-			SetServicesA(
-				layanan.map((snap) => {
-					const { ID_layanan, layanan } = snap;
-					return { ID_layanan, layanan };
-				})
-			);
-			setQuestionsA(
-				pertanyaan.map((snap) => {
-					const { pertanyaan, ID_pertanyaan, current_avg_rate } = snap;
-					return { pertanyaan, ID_pertanyaan, current_avg_rate };
-				})
-			);
-			setCurrentTotalAvgRateA(current_total_avg_rate);
-		});
-		axios.get(Cors + API_URL + "?tipe=form_b").then((response) => {
-			const { pertanyaan, layanan, current_total_avg_rate } = response.data;
-			SetServicesB(
-				layanan.map((snap) => {
-					const { ID_layanan, layanan } = snap;
-					return { ID_layanan, layanan };
-				})
-			);
-			setQuestionsB(
-				pertanyaan.map((snap) => {
-					const { pertanyaan, ID_pertanyaan, current_avg_rate } = snap;
-					return { pertanyaan, ID_pertanyaan, current_avg_rate };
-				})
-			);
-			setCurrentTotalAvgRateA(current_total_avg_rate);
-		});
+		setInterval(() => {
+			axios.get(API_URL + "?tipe=form_a").then((response) => {
+				const { pertanyaan, layanan, current_total_avg_rate } = response.data;
+				SetServicesA(
+					layanan.map((snap) => {
+						const { ID_layanan, layanan } = snap;
+						return { ID_layanan, layanan };
+					})
+				);
+				setQuestionsA(
+					pertanyaan.map((snap) => {
+						const { pertanyaan, ID_pertanyaan, current_avg_rate } = snap;
+						return { pertanyaan, ID_pertanyaan, current_avg_rate };
+					})
+				);
+				setCurrentTotalAvgRateA(current_total_avg_rate);
+			});
+			axios.get(API_URL + "?tipe=form_b").then((response) => {
+				const { pertanyaan, layanan, current_total_avg_rate } = response.data;
+				SetServicesB(
+					layanan.map((snap) => {
+						const { ID_layanan, layanan } = snap;
+						return { ID_layanan, layanan };
+					})
+				);
+				setQuestionsB(
+					pertanyaan.map((snap) => {
+						const { pertanyaan, ID_pertanyaan, current_avg_rate } = snap;
+						return { pertanyaan, ID_pertanyaan, current_avg_rate };
+					})
+				);
+				setCurrentTotalAvgRateA(current_total_avg_rate);
+			});
+		}, 5000);
 	}, []);
 
 	return <BpipiSurveyContext.Provider value={{ questionsA, questionsB, currentTotalAvgRateA, currentTotalAvgRateB, servicesA, servicesB, educations, API_URL, Cors, SITE_KEY, ratingsA, ratingsB, setRatingsA, setRatingsB }}>{children}</BpipiSurveyContext.Provider>;

@@ -38,9 +38,9 @@ export default function BpipiChart() {
 							<img src={PartnerLogoSm} alt="" />
 						</div>
 					</div>
-					<div class="flex items-center justify-between mt-4">
-						<div class="capitalize fhd:text-xl text-sm text-white lg:text-black text-center">* skala index 1-4</div>
-						<button onClick={handleClick} class="focus:outline-none capitalize fhd:text-xl text-sm text-white lg:text-black text-center border-2 lg:border-gray-800 border-white rounded-full py-1 px-2">
+					<div className="flex items-center justify-between mt-4">
+						<div className="capitalize fhd:text-xl text-sm text-white lg:text-black text-center">* skala index 1-4</div>
+						<button onClick={handleClick} className="focus:outline-none capitalize fhd:text-xl text-sm text-white lg:text-black text-center border-2 lg:border-gray-800 border-white rounded-full py-1 px-2">
 							Hasil Survey Periode Sebelumnya
 						</button>
 					</div>

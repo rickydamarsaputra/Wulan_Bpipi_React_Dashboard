@@ -50,7 +50,7 @@ export default function SurveyPresepsiAntiKorupsi() {
 
 		if (serviceTitle && email && company && address && telephone && isValid == false) {
 			setIsloading(true);
-			axios.post(Cors + API_URL + "?tipe=form_b", dataTransfer).then((response) => {
+			axios.post(API_URL + "?tipe=form_b", dataTransfer).then((response) => {
 				handleBack();
 				setIsloading(false);
 				// console.log(response);

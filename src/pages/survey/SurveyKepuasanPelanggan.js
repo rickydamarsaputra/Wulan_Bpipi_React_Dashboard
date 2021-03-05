@@ -45,7 +45,7 @@ export default function SurveyKepuasanPelanggan() {
 		// !age ? setValidAge(true) : setValidAge(false);
 		if (serviceTitle && email && isValid == false) {
 			setIsloading(true);
-			axios.post(Cors + API_URL + "?tipe=form_a", dataTransfer).then((response) => {
+			axios.post(API_URL + "?tipe=form_a", dataTransfer).then((response) => {
 				handleBack();
 				setIsloading(false);
 				// console.log(response);

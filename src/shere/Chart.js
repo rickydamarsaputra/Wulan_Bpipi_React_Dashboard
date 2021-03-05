@@ -31,13 +31,9 @@ export default function Chart({ chart, chart: { title, indicator, avg, btnText, 
 
 	return (
 		<div className="shadow-custom rounded-lg p-8 bg-white">
-			<div className="flex fhd:items-center justify-between mb-4">
-				<div>
-					<div className="fhd:text-4xl md:text-2xl font-bold text-gray-custom">{title}</div>
-					{/* <div className="w-4/5 h-thin my-2 bg-black"></div> */}
-					{/* <div>{indicator}</div> */}
-				</div>
-				<div className="fhd:text-custom md:text-5xl text-4xl font-bold text-blue-custom">{avg}</div>
+			<div className="flex items-center justify-between mb-4">
+				<div className="fhd:text-4xl md:text-2xl font-bold text-gray-custom w-4/5">{title}</div>
+				<div className="fhd:text-custom md:text-5xl text-4xl font-bold text-blue-custom">{avg.toFixed(Math.max(((avg + "").split(".")[1] || "").length, 2))}</div>
 			</div>
 			<div className="text-center border-b-2 border-t-2 py-5 fhd:py-10 fhd:my-10">
 				<div className="capitalize text-lg fhd:text-2xl font-semibold text-gray-custom mb-2">total responden: {responden}</div>
